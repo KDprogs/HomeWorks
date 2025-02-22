@@ -4,29 +4,29 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   const int size_array_numbers = 10;
-   int array_numbers[size_array_numbers]{};
+   const int size{10};
+   int arr[size]{};
 
-   for (int index = 0; index < size_array_numbers; index++) { array_numbers[index] = index; }
+   for (int i{}; i < size; i++) { arr[i] = i; }
 
    std::cout << "Массив:";
-   for (int index = 0; index < size_array_numbers; index++) { std::cout << ' ' << array_numbers[index]; }
+   for (int i{}; i < size; i++) { std::cout << ' ' << arr[i]; }
 
-   std::cout << '\n' << "Минимальный элемент: ";
-   int min_element = array_numbers[0];
-   for (int index = 1; index < size_array_numbers; index++)
+   std::cout << "\n\nМинимальный элемент: ";
+   int min = arr[0];
+   for (int i{1}; i < size; i++)
    {
-      if (min_element > array_numbers[index]) { min_element = array_numbers[index]; }
+      if (min > arr[i]) { min = arr[i]; }
    }
-   std::cout << min_element;
+   std::cout << min;
 
-   std::cout << '\n' << "Максимальный элемент: ";
-   int max_element = array_numbers[0];
-   for (int index = 1; index < size_array_numbers; index++)
+   std::cout << "\nМаксимальный элемент: ";
+   int max = arr[0];
+   for (int i{1}; i < size; i++)
    {
-      if (max_element < array_numbers[index]) { max_element = array_numbers[index]; }
+      if (max < arr[i]) { max = arr[i]; }
    }
-   std::cout << max_element;
+   std::cout << max << '\n';
 
    return 0;
 }

@@ -4,16 +4,16 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   int numEnteredUser{};
+   int num{};
    int result{};
 
-   std::cout << "Введите целое число:\n";
-   std::cin >> numEnteredUser;
+   std::cout << "Введите целое число: ";
+   std::cin >> num;
 
-   for (int multiply_by = 1; multiply_by != 11; multiply_by++)
+   for (int i{1}; i < 11; i++)
    {
-      result = numEnteredUser * multiply_by;
-      std::cout << numEnteredUser << " x " << multiply_by << " = " << result << "\n";
+      result = num * i;
+      std::cout << num << " x " << i << " = " << result << "\n";
    }
 
    return 0;

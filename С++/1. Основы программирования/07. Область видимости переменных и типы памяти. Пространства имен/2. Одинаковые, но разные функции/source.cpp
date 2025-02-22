@@ -25,8 +25,8 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   int x = 6;
-   int y = 9;
+   int x{6};
+   int y{9};
 
    std::cout << "x = " << x << ", ";
    std::cout << "y = " << y << '\n';

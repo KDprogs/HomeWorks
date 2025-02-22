@@ -7,18 +7,18 @@ double division(double a, double b) { return a / b; }
 
 int main()
 {
-	int a = 5;
-	int b = 10;
+	int a{5};
+	int b{10};
 
-	int s = sum(a, b);
+	int summ = sum(a, b);
 	int dif = diff(a, b);
 	int mult = multiplication(a, b);
 	double div = division(a, b);
 
-	std::cout << a << " + " << b << " = " << s << std::endl;
-	std::cout << a << " - " << b << " = " << dif << std::endl;
-	std::cout << a << " * " << b << " = " << mult << std::endl;
-	std::cout << a << " / " << b << " = " << div << std::endl;
+	std::cout << a << " + " << b << " = " << summ << '\n'
+		<< a << " - " << b << " = " << dif << '\n'
+		<< a << " * " << b << " = " << mult << '\n'
+		<< a << " / " << b << " = " << div << '\n';
 
 	return 0;
 }

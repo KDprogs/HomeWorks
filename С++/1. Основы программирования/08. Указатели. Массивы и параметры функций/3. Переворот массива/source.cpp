@@ -2,11 +2,11 @@
 
 void reverse(int* arr, int size)
 {
-   for (int i = 0; i < size / 2; i++)
+   for (int i{}; i < size/2; i++)
    {
       int temp = arr[i];
-      arr[i] = arr[size - i - 1];
-      arr[size - i - 1] = temp;
+      arr[i] = arr[size-i-1];
+      arr[size-i-1] = temp;
 
       // arr[i] = arr[i] + arr[size-i-1];
       // arr[size-i-1] = arr[i] - arr[size-i-1];
@@ -16,8 +16,8 @@ void reverse(int* arr, int size)
 
 void print(int* arr, int size)
 {
-   for (int i = 0; i < size; i++) { std::cout << arr[i] << ' '; }
-   std::cout << std::endl;
+   for (int i{}; i < size; i++) { std::cout << arr[i] << ' '; }
+   std::cout << '\n';
 }
 
 

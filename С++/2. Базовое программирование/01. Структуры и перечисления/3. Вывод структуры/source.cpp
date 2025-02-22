@@ -4,12 +4,12 @@ struct address
 {
 	std::string city;
 	std::string street;
-	int house;
-	int flat;
-	int index;
+	int house{};
+	int flat{};
+	int index{};
 };
 
-void print_address(address person);
+void print_address(address& person);
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
 	return 0;
 }
 
-void print_address(address person)
+void print_address(address& person)
 {
 	std::cout << "Город: " << person.city << '\n'
 		<< "Улица: " << person.street << '\n'

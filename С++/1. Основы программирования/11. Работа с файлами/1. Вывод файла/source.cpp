@@ -3,18 +3,16 @@
 
 int main()
 {
-   setlocale(LC_ALL, "rus");
+	setlocale(LC_ALL, "rus");
 
-   std::string file{ "data.txt" };
-   std::ifstream data{ file };
+	std::string file{ "data.txt" };
+	std::string str;
 
-   if (data.is_open())
-   {
-      std::string str{};
-      while (data >> str) { std::cout << str << '\n'; }
-      data.close();
-   }
-   else { std::cout << "Файла " + file + " не существует!"; }
+	std::ifstream data{ file };
+	if (!data.is_open()) { std::cout << "Файла " + file + " не существует!\n"; return 1; }
 
-   return 0;
+	while (data >> str) { std::cout << str << '\n'; }
+	data.close();
+
+	return 0;
 }

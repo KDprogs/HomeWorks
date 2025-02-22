@@ -6,11 +6,11 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	std::string wordEnteredUser{};
+	std::string word;
 
-	std::cout << "Введите слово:" << std::endl;
-	std::cin >> wordEnteredUser;
-	std::cout << "Вы ввели:\n" << wordEnteredUser << std::endl;
+	std::cout << "Введите слово:\n";
+	std::cin >> word;
+	std::cout << "Вы ввели:\n" << word << '\n';
 
 	return 0;
 }

@@ -4,18 +4,18 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   int numEnteredUser{};
+   int num{};
    int sum{};
 
    do
    {
-      std::cout << "Введите целое число или число '0', чтобы закончить:\n";
-      std::cin >> numEnteredUser;
-      sum += numEnteredUser;
+      std::cout << "Введите целое число или число '0', чтобы закончить: ";
+      std::cin >> num;
+      sum += num;
    }
-   while (numEnteredUser != 0);
+   while (num != 0);
 
-   std::cout << "Сумма: " << sum;
+   std::cout << "\nСумма: " << sum << '\n';
 
    return 0;
 }

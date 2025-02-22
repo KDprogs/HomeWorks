@@ -9,42 +9,42 @@ int main()
 
    std::string file{ "out.txt" };
 
-   std::string size{};
+   std::string num;
    bool err{};
 
    do
    {
-      std::string str{};
+      std::string str;
       std::cout << "Введите размер массива: ";
       std::getline(std::cin, str);
-      size = str.substr(0, 6);
-      for (char i = '1'; i <= '9'; i++)
+      num = str.substr(0, 6);
+      for (char i{'1'}; i <= '9'; i++)
       {
-         if (size.find(i) == 0) { err = false; break; }
+         if (num.find(i) == 0) { err = false; break; }
          err = true;
       }
-      if (err || std::stoi(size) > 99999)
+      if (err || std::stoi(num) > 99999)
       {
          std::cout << "\nОшибка! Допустимый диапазон от 1 до 99999\n\n";
          err = true;
       }
    } while (err);
 
-   int arraySize = std::stoi(size);
-   int* arr = new int[arraySize] {};
+   int size = std::stoi(num);
+   int* arr = new int[size]{};
 
-   std::cout << "\nВы создали массив из " << arraySize << " элементов, теперь введите значение каждого элемента:\n\n";
+   std::cout << "\nВы создали массив из " << size << " элементов, теперь введите значение каждого элемента:\n\n";
 
-   for (int i = 0; i < arraySize; i++)
+   for (int i{}; i < size; i++)
    {
-      std::string value{};
+      std::string value;
       do
       {
-         std::string str{};
+         std::string str;
          std::cout << "arr[" << i << "] = ";
          std::getline(std::cin, str);
          value = str.substr(0, 12);
-         for (char j = '0'; j <= '9'; j++)
+         for (char j{'0'}; j <= '9'; j++)
          {
             if (value.find(j) == 0) { err = false; break; }
             else if (value.find(j) == 1 && value.find('-') == 0) { err = false; break; }
@@ -60,8 +60,10 @@ int main()
    }
 
    std::ofstream log{ file };
-   log << arraySize << '\n';
-   for (int i = arraySize; i > 0; i--) { log << arr[i - 1] << ' '; }
+   if (!log.is_open()) { std::cout << "Невозможно создать файл " + file + " нет прав доступа!\n"; return 1; }
+
+   log << size << '\n';
+   for (int i{size}; i > 0; i--) { log << arr[i-1] << ' '; }
    log.close();
 
    delete[] arr;

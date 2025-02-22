@@ -5,14 +5,14 @@ class Counter
 {
 public:
 	Counter() { count = 1; }
-	Counter(int num) { count = num; }
+	Counter(int& num) { count = num; }
 
 	void setIncrease() { count++; }
 	void setDecrease() { count--; }
 	void getCurrent() const { std::cout << count << '\n'; }
 
 private:
-	int count;
+	int count{};
 };
 
 void commands(Counter& score);
@@ -23,7 +23,7 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	std::string answer{};
+	std::string answer;
 	int num{};
 	
 	std::cout << "Вы хотите указать начальное значение счётчика? Введите да или нет: ";

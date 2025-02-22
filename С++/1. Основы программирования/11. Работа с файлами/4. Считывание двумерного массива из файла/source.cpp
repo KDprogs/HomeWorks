@@ -3,44 +3,44 @@
 
 int main()
 {
-   setlocale(LC_ALL, "rus");
+	setlocale(LC_ALL, "rus");
 
-   std::string file{ "data.txt" };
-   std::ifstream data{ file };
+	std::string file{ "data.txt" };
+	int rows{};
+	int cols{};
 
-   if (data.is_open())
-   {
-      int rows{}; data >> rows;
-      int cols{}; data >> cols;
+	std::ifstream data{ file };
+	if (!data.is_open()) { std::cout << "Файла " + file + " не существует!\n"; return 1; }
 
-      // Создаем двумерный динамический массив
-      int** arr = new int* [rows];
-      for (int i = 0; i < rows; i++) { arr[i] = new int[cols]; }
+	data >> rows;
+	data >> cols;
 
-      // Заполняем массив
-      for (int i = 0; i < rows; i++)
-      {
-         for (int j = cols; j > 0; j--) { data >> arr[i][j - 1]; }
-      }
-      data.close();
+	// Создаем двумерный динамический массив
+	int** arr = new int* [rows];
+	for (int i{}; i < rows; i++) { arr[i] = new int[cols]; }
 
-      // Выводим массив
-      for (int i = 0; i < rows; i++)
-      {
-         for (int j = 0; j < cols; j++)
-         {
-            std::cout.width(3);
-            std::cout.setf(std::ios::left);
-            std::cout << arr[i][j] << ' ';
-         }
-         std::cout << '\n';
-      }
+	// Заполняем массив
+	for (int i{}; i < rows; i++)
+	{
+		for (int j{cols}; j > 0; j--) { data >> arr[i][j-1]; }
+	}
+	data.close();
 
-      // Освобождаем память
-      for (int i = 0; i < rows; i++) { delete[] arr[i]; }
-      delete[] arr;
-   }
-   else { std::cout << "Файла " + file + " не существует!"; }
+	// Выводим массив
+	for (int i{}; i < rows; i++)
+	{
+		for (int j{}; j < cols; j++)
+		{
+			std::cout.width(3);
+			std::cout.setf(std::ios::left);
+			std::cout << arr[i][j] << ' ';
+		}
+		std::cout << '\n';
+	}
 
-   return 0;
+	// Освобождаем память
+	for (int i{}; i < rows; i++) { delete[] arr[i]; }
+	delete[] arr;
+
+	return 0;
 }

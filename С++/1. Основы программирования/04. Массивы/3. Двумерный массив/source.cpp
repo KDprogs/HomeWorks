@@ -4,63 +4,69 @@ int main()
 {
 	setlocale(LC_ALL, "rus");
 
-	const int size1_array_numbers = 3;
-	const int size2_array_numbers = 6;
-	int array_numbers[size1_array_numbers][size2_array_numbers]{};
+	const int size1{3};
+	const int size2{6};
+	int arr[size1][size2]{};
+	int min{};
+	int min_i{};
+	int min_j{};
+	int max{};
+	int max_i{};
+	int max_j{};
+	int num{};
 
-	int element{};
-	for (int index1 = 0; index1 < size1_array_numbers; index1++)
+
+	for (int i{}; i < size1; i++)
 	{
-		for (int index2 = 0; index2 < size2_array_numbers; index2++) { array_numbers[index1][index2] = element++; }
+		for (int j{}; j < size2; j++) { arr[i][j] = num++; }
 	}
 
 	std::cout << "Массив:\n";
-	for (int index1 = 0; index1 < size1_array_numbers; index1++)
+	for (int i{}; i < size1; i++)
 	{
-		for (int index2 = 0; index2 < size2_array_numbers; index2++)
+		for (int j{}; j < size2; j++)
 		{
 			std::cout.width(3);
 			std::cout.setf(std::ios::left);
-			std::cout << array_numbers[index1][index2];
+			std::cout << arr[i][j];
 		}
 		std::cout << '\n';
 	}
 
-	std::cout << "Индекс минимального элемента: ";
-	int index1_min_element{};
-	int index2_min_element{};
-	int min_element = array_numbers[0][0];
-	for (int index1 = 0; index1 < size1_array_numbers; index1++)
+	std::cout << "\nИндекс минимального элемента: ";
+	
+	min = arr[0][0];
+	for (int i{}; i < size1; i++)
 	{
-		for (int index2 = 0; index2 < size2_array_numbers; index2++)
+		for (int j{}; j < size2; j++)
 		{
-			if (min_element > array_numbers[index1][index2])
+			if (min > arr[i][j])
 			{
-				min_element = array_numbers[index1][index2];
-				index1_min_element = index1;
-				index2_min_element = index2;
+				min = arr[i][j];
+				min_i = i;
+				min_j = j;
 			}
 		}
 	}
-	std::cout << index1_min_element << ' ' << index2_min_element << '\n';
+	std::cout << min_i << ' ' << min_j << '\n';
+
 
 	std::cout << "Индекс максимального элемента: ";
-	int index1_max_element{};
-	int index2_max_element{};
-	int max_element = array_numbers[0][0];
-	for (int index1 = 0; index1 < size1_array_numbers; index1++)
+	
+	max = arr[0][0];
+	for (int i{}; i < size1; i++)
 	{
-		for (int index2 = 0; index2 < size2_array_numbers; index2++)
+		for (int j{}; j < size2; j++)
 		{
-			if (max_element < array_numbers[index1][index2])
+			if (max < arr[i][j])
 			{
-				max_element = array_numbers[index1][index2];
-				index1_max_element = index1;
-				index2_max_element = index2;
+				max = arr[i][j];
+				max_i = i;
+				max_j = j;
 			}
 		}
 	}
-	std::cout << index1_max_element << ' ' << index2_max_element;
+	std::cout << max_i << ' ' << max_j << '\n';
 
 	return 0;
 }

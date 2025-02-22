@@ -4,11 +4,11 @@ int main()
 {
 	setlocale(LC_ALL, "rus");
 
-	int numEnteredUser{};
+	int num{};
 
-	std::cout << "Введите число:" << std::endl;
-	std::cin >> numEnteredUser;
-	std::cout << "Вы ввели:\n" << numEnteredUser << std::endl;
+	std::cout << "Введите число:\n";
+	std::cin >> num;
+	std::cout << "Вы ввели:\n" << num << '\n';
 
 	return 0;
 }

@@ -4,30 +4,32 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   int array_numbers[]{ 7, 1, 6, 4, 9, 8, 2, 0, 3, 5 };
-   int size_array_numbers = sizeof(array_numbers) / sizeof(array_numbers[0]);
-   // или int size_array_numbers = std::size(array_numbers); доступен начиная с C++17.
+   int arr[]{ 7, 1, 6, 4, 9, 8, 2, 0, 3, 5 };
+   int size = sizeof(arr) / sizeof(arr[0]);
+   // или int size = std::size(arr); доступен начиная с C++17.
 
    std::cout << "Массив до сортировки:";
-   for (int index = 0; index < size_array_numbers; index++) { std::cout << ' ' << array_numbers[index]; }
+   for (int i{}; i < size; i++) { std::cout << ' ' << arr[i]; }
 
-   std::cout << '\n' << "Массив после сортировки:";
-   bool swap = false;
+   std::cout << "\nМассив после сортировки:";
+   bool swap{};
    do
    {
       swap = false;
-      for (int index = size_array_numbers - 1; index > 0; index--)
+      for (int i{size-1}; i > 0; i--)
       {
-         if (array_numbers[index] < array_numbers[index - 1])
+         if (arr[i] < arr[i-1])
          {
-            int temporary = array_numbers[index];
-            array_numbers[index] = array_numbers[index - 1];
-            array_numbers[index - 1] = temporary;
+            int temp = arr[i];
+            arr[i] = arr[i-1];
+            arr[i-1] = temp;
             swap = true;
          }
       }
    } while (swap);
-   for (int index = 0; index < size_array_numbers; index++) { std::cout << ' ' << array_numbers[index]; }
+   for (int i{}; i < size; i++) { std::cout << ' ' << arr[i]; }
+
+   std::cout << '\n';
 
    return 0;
 }

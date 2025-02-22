@@ -1,22 +1,24 @@
 ﻿#include <iostream>
-#include <fstream> 
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <windows.h>
 
 class Address
 {
 public:
-	Address(std::string city, std::string street, int house, int flat)
-	{
-		setAddr(city, street, house, flat);
-	}
+	Address() = default;
 
-	void setAddr(std::string city, std::string street, int house, int flat)
+	Address(const std::string city, const std::string street, const int& house, const int& flat)
 	{
-		this->city = city;
-		this->street = street;
-		this->house = house;
-		this->flat = flat;
+		if (house > 0 && flat > -1)
+		{
+			this->city = city;
+			this->street = street;
+			this->house = house;
+			this->flat = flat;
+		}
+		else { std::cout << "Ошибка инициализации адреса"; }
 	}
 
 	std::string getAddr() const
@@ -24,19 +26,14 @@ public:
 		return city + ", " + street + ", " + std::to_string(house) + ", " + std::to_string(flat);
 	}
 
-	std::string getCity() const
-	{
-		return city;
-	}
-
 private:
 	std::string city;
 	std::string street;
-	int house;
-	int flat;
+	int house{};
+	int flat{};
 };
 
-void sort(Address** addr, int numAddr);
+void sort(Address* addr, const int& numAddr);
 
 std::string utf8_to_1251(const std::string& utf8);
 
@@ -68,23 +65,24 @@ int main()
 	else { UTF8 = true; }
 
 	data >> numAddr;
-	Address** addr = new Address* [numAddr];
-	for (int i{}; i < numAddr; i++) { addr[i] = new Address(city, street, house, flat); }
+	Address* addr = new Address[numAddr];
 
 	for (int i{}; i < numAddr; i++)
 	{
-		data >> city;
-		data >> street;
-		data >> house;
-		data >> flat;
-		if (UTF8) { addr[i]->setAddr(utf8_to_1251(city), utf8_to_1251(street), house, flat); }
-		else { addr[i]->setAddr(city, street, house, flat); }
+		data >> city >> street >> house >> flat;
+		if (UTF8) { addr[i] = Address(utf8_to_1251(city), utf8_to_1251(street), house, flat); }
+		else { addr[i] = Address(city, street, house, flat); }
 	}
 	data.close();
 
 
 	std::ofstream form{ output };
-	if (!form.is_open()) { std::cout << "Невозможно создать файл " + output + " нет прав доступа!\n"; return 1; }
+	if (!form.is_open())
+	{
+		std::cout << "Невозможно создать файл " + output + " нет прав доступа!\n";
+		delete[] addr;
+		return 1;
+	}
 
 	form << numAddr << '\n';
 
@@ -92,26 +90,34 @@ int main()
 
 	for (int i{}; i < numAddr; i++)
 	{
-		form << addr[i]->getAddr() << '\n';
+		form << addr[i].getAddr() << '\n';
 	}
 	form.close();
 
-	for (int i{}; i < numAddr; i++) { delete addr[i]; }
 	delete[] addr;
 
 	return 0;
 }
 
 
-void sort(Address** addr, int numAddr)
+void sort(Address* addr, const int& numAddr)
 {
 	bool swap{};
+	std::string city1;
+	std::string city2;
+	std::stringstream adrs;
 	do
 	{
 		swap = false;
 		for (int i{}; i < numAddr-1; i++)
 		{
-			if (addr[i]->getCity().compare(addr[i+1]->getCity()) == 1)
+			adrs << addr[i].getAddr();
+			adrs >> city1;
+			adrs.str("");
+			adrs << addr[i+1].getAddr();
+			adrs >> city2;
+			adrs.str("");
+			if (city1.compare(city2) == 1)
 			{
 				std::swap(addr[i], addr[i+1]);
 				swap = true;

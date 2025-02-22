@@ -19,9 +19,11 @@ int main()
 
    std::cout << "Массив:";
 
-   for (int i = 0; i < size; i++) { std::cout << ' ' << arr[i]; }
+   for (int i{}; i < size; i++) { std::cout << ' ' << arr[i]; }
 
    delete[] arr;
+
+   std::cout << '\n';
 
    return 0;
 }

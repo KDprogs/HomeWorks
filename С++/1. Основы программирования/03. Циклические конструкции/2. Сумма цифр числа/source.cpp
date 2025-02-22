@@ -4,19 +4,19 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   int numEnteredUser{};
+   int num{};
    int sum{};
 
-   std::cout << "Введите целое число:\n";
-   std::cin >> numEnteredUser;
+   std::cout << "Введите целое число: ";
+   std::cin >> num;
 
-   while (numEnteredUser != 0)
+   while (num != 0)
    {
-      sum += numEnteredUser % 10;
-      numEnteredUser = numEnteredUser / 10;
+      sum += num % 10;
+      num = num / 10;
    }
 
-   std::cout << "Сумма цифр: " << sum;
+   std::cout << "\nСумма цифр: " << sum << '\n';
 
    return 0;
 }

@@ -6,17 +6,18 @@
 class Address
 {
 public:
-	Address(std::string city, std::string street, int house, int flat)
-	{
-		setAddr(city, street, house, flat);
-	}
+	Address() = default;
 
-	void setAddr(std::string& city, std::string& street, int house, int flat)
+	Address(const std::string& city, const std::string& street, const int& house, const int& flat)
 	{
-		this->city = city;
-		this->street = street;
-		this->house = house;
-		this->flat = flat;
+		if (house > 0 && flat > -1)
+		{
+			this->city = city;
+			this->street = street;
+			this->house = house;
+			this->flat = flat;
+		}
+		else { std::cout << "Ошибка инициализации адреса"; }
 	}
 
 	std::string getAddr() const
@@ -27,8 +28,8 @@ public:
 private:
 	std::string city;
 	std::string street;
-	int house;
-	int flat;
+	int house{};
+	int flat{};
 };
 
 int main()
@@ -50,32 +51,32 @@ int main()
 	if (!data.is_open()) { std::cout << "Файла " + input + " не существует!\n"; return 1; }
 
 	data >> numAddr;
-	Address** addr = new Address* [numAddr];
-	for (int i{}; i < numAddr; i++) { addr[i] = new Address(city, street, house, flat); }
+	Address* addr = new Address[numAddr];
 
 	for (int i{}; i < numAddr; i++)
 	{
-		data >> city;
-		data >> street;
-		data >> house;
-		data >> flat;
-		addr[i]->setAddr(city, street, house, flat);
+		data >> city >> street >> house >> flat;
+		addr[i] = Address(city, street, house, flat);
 	}
 	data.close();
 
 
 	std::ofstream form{ output };
-	if (!form.is_open()) { std::cout << "Невозможно создать файл " + output + " нет прав доступа!\n"; return 1; }
+	if (!form.is_open())
+	{ 
+		std::cout << "Невозможно создать файл " + output + " нет прав доступа!\n";
+		delete[] addr;
+		return 1;
+	}
 
 	form << numAddr << '\n';
 
 	for (int i{numAddr-1}; i >= 0; i--)
 	{
-		form << addr[i]->getAddr() << '\n';
+		form << addr[i].getAddr() << '\n';
 	}
 	form.close();
 
-	for (int i{}; i < numAddr; i++) { delete addr[i]; }
 	delete[] addr;
 
 	return 0;

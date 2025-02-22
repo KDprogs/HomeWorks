@@ -7,8 +7,8 @@ int main()
 {
    setlocale(LC_ALL, "rus");
 
-   std::string str{};
-   std::string value{};
+   std::string str;
+   std::string value;
    bool err{};
 
    do
@@ -18,7 +18,7 @@ int main()
          std::cout << "Введите номер месяца: ";
          std::getline(std::cin, str);
          value = str.substr(0, 2);
-         for (char j = '0'; j <= '9'; j++)
+         for (char j{'0'}; j <= '9'; j++)
          {
             if (value.find(j) == 0) { err = false; break; }
             err = true;

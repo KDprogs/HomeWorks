@@ -7,14 +7,14 @@ int main()
    SetConsoleOutputCP(1251);
 
    std::string word{ "малина" };
-   std::string str{};
+   std::string str;
 
    do
    {
       std::cout << "Угадайте слово: ";
       std::cin >> str;
 
-      if (str == word) { std::cout << "Правильно! Вы победили! Загаданное слово — " + word; break; }
+      if (str == word) { std::cout << "\nПравильно! Вы победили! Загаданное слово — " + word + '\n'; break; }
       else { std::cout << "Неправильно\n"; continue; }
    }
    while (str != word);

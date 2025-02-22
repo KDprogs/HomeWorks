@@ -4,20 +4,20 @@
 
 struct account
 {
-	long long num;
+	long long num{};
 	std::string name;
-	double money;
+	double money{};
 };
 
-void change_balance(account& person, double amount);
+void change_balance(account& person, double& amount);
 
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	account person{};
 	double amount{};
+	account person;
 
 	std::cout << "Введите номер счёта: ";
 	std::cin >> person.num;
@@ -29,12 +29,12 @@ int main()
 	std::cin >> amount;
 	change_balance(person, amount);
 	std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(2);
-	std::cout << "Ваш счёт: " << person.name << ", " << person.num << ", " << person.money << '\n';
+	std::cout << "\nВаш счёт: " << person.name << ", " << person.num << ", " << person.money << '\n';
 
 	return 0;
 }
 
-void change_balance(account& person, double amount)
+void change_balance(account& person, double& amount)
 {
 	person.money = amount;
 }

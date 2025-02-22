@@ -2,14 +2,16 @@
 
 int main()
 {
-	const int size_array_numbers = 10;
-	int array_numbers[size_array_numbers]{};
+	const int size{10};
+	int arr[size]{};
 
-	for (int index = 0; index < size_array_numbers; index++) { array_numbers[index] = index; }
+	for (int i{}; i < size; i++) { arr[i] = i; }
 
-	std::cout << array_numbers[0];
+	std::cout << arr[0];
 
-	for (int index = 1; index < size_array_numbers; index++) { std::cout << ", " << array_numbers[index]; }
+	for (int i{1}; i < size; i++) { std::cout << ", " << arr[i]; }
+
+	std::cout << '\n';
 
 	return 0;
 }

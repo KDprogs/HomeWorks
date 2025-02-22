@@ -6,42 +6,42 @@ int main()
 {  
   setlocale(LC_ALL, "rus");  
 
-  std::string size{};  
-  bool err = true;  
+  std::string num;  
+  bool err{};
 
   do  
   {  
-     std::string str{};  
+     std::string str;  
      std::cout << "Введите размер массива: ";  
      std::getline(std::cin, str);  
-     size = str.substr(0, 6);  
-     for (char i = '1'; i <= '9'; i++)  
+     num = str.substr(0, 6);  
+     for (char i{'1'}; i <= '9'; i++)  
      {  
-        if (size.find(i) == 0) { err = false; break; }  
+        if (num.find(i) == 0) { err = false; break; }  
         err = true;  
      }  
-     if (err || std::stoi(size) > 99999)
+     if (err || std::stoi(num) > 99999)
      {
         std::cout << "\nОшибка! Допустимый диапазон от 1 до 99999\n\n";
         err = true;
      }
   } while (err);  
 
-  int arraySize = std::stoi(size);  
-  int* arr = new int[arraySize] {};  
+  int size = std::stoi(num);  
+  int* arr = new int[size]{};  
 
-  std::cout << "\nВы создали массив из " << arraySize << " элементов, теперь введите значение каждого элемента:\n\n";
+  std::cout << "\nВы создали массив из " << size << " элементов, теперь введите значение каждого элемента:\n\n";
 
-  for (int i = 0; i < arraySize; i++)  
+  for (int i{}; i < size; i++)  
   {  
-     std::string value{};  
+     std::string value;  
      do  
      {  
-        std::string str{};  
+        std::string str;  
         std::cout << "arr[" << i << "] = ";  
         std::getline(std::cin, str);  
         value = str.substr(0, 12);  
-        for (char j = '0'; j <= '9'; j++)  
+        for (char j{'0'}; j <= '9'; j++)  
         {  
            if (value.find(j) == 0) { err = false; break; }  
            else if (value.find(j) == 1 && value.find('-') == 0) { err = false; break; }  
@@ -58,9 +58,11 @@ int main()
 
   std::cout << "\nВведённый массив:";  
 
-  for (int i = 0; i < arraySize; i++) { std::cout << ' ' << arr[i]; }  
+  for (int i{}; i < size; i++) { std::cout << ' ' << arr[i]; }  
 
-  delete[] arr;  
+  delete[] arr; 
+
+  std::cout << '\n';
 
   return 0;  
 }

@@ -22,7 +22,7 @@ int main()
    std::cout << "Введите возраст: ";
    std::cin >> age;
 
-   std::cout << "\nВаше предсказание:\n\n";
+   std::cout << "\nВаше предсказание:\n";
 
    if (gender != "м" && gender != "ж")
    {
