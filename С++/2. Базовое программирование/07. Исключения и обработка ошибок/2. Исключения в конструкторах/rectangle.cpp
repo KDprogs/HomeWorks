@@ -1,0 +1,17 @@
+﻿#include "rectangle.h"
+
+Rectangle::Rectangle() : Quadrangle(10, 20)
+{
+	c = a; d = b; A = 90; B = 90; C = 90; D = 90;
+
+	name = "Прямоугольник";
+	std::cout << name;
+
+	check_sides_and_angles();
+	if (a != c) { throw bad_figure("стороны a и c не равны"); }
+	if (b != d) { throw bad_figure("стороны b и d не равны"); }
+	if (A != 90 || B != 90 || C != 90 || D != 90) { throw bad_figure("все углы должны быть 90"); }
+
+	std::cout << " (стороны " << a << ", " << b << ", " << c << ", " << d
+		<< "; углы " << A << ", " << B << ", " << C << ", " << D << ") создан\n";
+}
